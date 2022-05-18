@@ -22,6 +22,7 @@ let ChatId;
 io.on("connection", (socket) => {
 
   console.log("client is connected");
+  count=0;
   welcomemsg="Hello Beautiful!!Welcome to GreatClips stylist booking ChatBot,Plese Mention your name..."
   socket.emit(
     "obj0",
@@ -61,6 +62,22 @@ io.on("connection", (socket) => {
       );
       fs.appendFileSync("chatlog.txt","Client : No"+"\n");
       fs.appendFileSync("chatlog.txt","Bot : Thanks for reaching out as..For other services plese call to our help line 747 587 7821"+"\n");
+      //Save chathistory to db
+      fs.readFile("chatlog.txt",(err,data)=>{
+     
+        if(!err){
+  
+          chat={client:name,chat:data.toString()};
+          chatString=JSON.stringify(chat);
+          chatJson=JSON.parse(chatString);
+          //console.log(chatJson);
+        Controller.storeChatHistory(chatJson).then(data=>{
+          ChatId=data;
+        });
+         
+  
+        }
+      })
     }
     if (msg == "yes") {
       socket.emit(
@@ -76,20 +93,21 @@ io.on("connection", (socket) => {
       service=msg;
     socket.emit(
       "day",
-      "Bot : which day"
+      "Bot : which day (ex: 1st June or 06-01-2022) "
     );
     fs.appendFileSync("chatlog.txt","Client : "+service+"\n");
-    fs.appendFileSync("chatlog.txt","Bot : which day"+"\n");
+    fs.appendFileSync("chatlog.txt","Bot : which day (ex: 1st June or 06-01-2022) "+"\n");
   });
 
   //Time selection & End message
   socket.on("timeselected", (msg) => {
     socket.emit(
       "obj0",
-      "Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder here the day before :)"
+      "Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder here the day before :).Please download the Chat history."
     );
     fs.appendFileSync("chatlog.txt","Client : "+msg+"\n");
-    fs.appendFileSync("chatlog.txt","Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder here the day before :)");
+    fs.appendFileSync("chatlog.txt","Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder here the day before :).Please download the Chat history.");
+    //save chathistory to DB
     fs.readFile("chatlog.txt",(err,data)=>{
      
       if(!err){
@@ -107,16 +125,6 @@ io.on("connection", (socket) => {
     })
   });
 
-  socket.on("filesave",(msg)=>{
-    console.log("filesave");
-    fs.writeFile('Downloads/file.txt', "chat history", error => {
-      if (error) {
-      console.error(error);
-      return;
-      }
-    
-  })
-})
 });
 
 http.listen(3000, () => {

@@ -1,11 +1,1 @@
 Bot : Hello Beautiful!!Welcome to GreatClips stylist booking ChatBot,Plese Mention your name...
-Client : Parvathy
-Bot: Hi Parvathy Are you intrested in booking an appoinment?
-Client : Yes
-Bot : Great,let's get you an appointment.Please choose the service...
-Client : Full color:$80-$120(depending on length)
-Bot : which day
-Client : 1st June
-Bot: Please choose the time..
-Client : 11:00 AM
-Thanks Parvathy!!! You are booked for a Full color:$80-$120(depending on length) at11:00 AM on1st June.I will send you a reminder here the day before :)

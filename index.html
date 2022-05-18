@@ -112,6 +112,13 @@
           document.getElementById("txtbox").style.display = "none";
           document.getElementById("senddata").style.display = "none";
           //chathistory button
+           //chathistory button
+           let btnHistory = document.createElement("button");
+          btnHistory.innerHTML = "Download ChatHistory";
+          document.getElementById("chatHistory").appendChild(btnHistory);
+          btnHistory.addEventListener("click", function () {
+            location.href="/chathistory";
+          });
         }
       });
 
@@ -168,6 +175,7 @@
           ptag.appendChild(ptagValue);
           document.getElementById("txtara").appendChild(ptag);
         });
+        
       });
 
       socket.on("day", (msg) => {
