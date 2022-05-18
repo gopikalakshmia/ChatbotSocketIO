@@ -103,10 +103,10 @@ io.on("connection", (socket) => {
   socket.on("timeselected", (msg) => {
     socket.emit(
       "obj0",
-      "Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder here the day before :).Please download the Chat history."
+      "Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder the day before :).Please download the Chat history."
     );
     fs.appendFileSync("chatlog.txt","Client : "+msg+"\n");
-    fs.appendFileSync("chatlog.txt","Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder here the day before :).Please download the Chat history.");
+    fs.appendFileSync("chatlog.txt","Thanks "+name+"!!! You are booked for a "+service+" at"+msg+" on"+day+".I will send you a reminder the day before :).Please download the Chat history.");
     //save chathistory to DB
     fs.readFile("chatlog.txt",(err,data)=>{
      

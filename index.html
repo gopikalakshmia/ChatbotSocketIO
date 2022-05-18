@@ -62,6 +62,8 @@
         ) {
           let btn = document.createElement("button");
           btn.innerHTML = "Yes";
+          document.getElementById("txtbox").style.display = "none";
+          document.getElementById("senddata").style.display = "none";
           document.getElementById("txtara").appendChild(btn);
           btn.addEventListener("click", function () {
             socket.emit("appointment", "yes");
@@ -179,7 +181,8 @@
       });
 
       socket.on("day", (msg) => {
-        console.log(msg);
+        document.getElementById("txtbox").style.display = "block";
+          document.getElementById("senddata").style.display = "block";
         let ptag = document.createElement("div");
         ptag.style.textAlign = "left";
         ptag.style.backgroundColor = "LightCoral";
@@ -192,7 +195,8 @@
       });
       socket.on("time", (msg) => {
         console.log(msg);
-
+        document.getElementById("txtbox").style.display = "none";
+          document.getElementById("senddata").style.display = "none";
         let ptag = document.createElement("div");
         ptag.style.textAlign = "left";
         ptag.style.backgroundColor = "LightCoral";
