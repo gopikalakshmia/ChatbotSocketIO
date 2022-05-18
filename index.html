@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      let data = "";
+      socket.on("obj0", (msg) => {
+        let ptag = document.createElement("div");
+        ptag.style.textAlign = "left";
+        ptag.style.backgroundColor = "LightCoral";
+        ptag.style.borderRadius = "1em";
+        ptag.style.width = "700px";
+        ptag.style.height = "80px";
+        let ptagValue = document.createTextNode("Bot : " + msg);
+        ptag.appendChild(ptagValue);
+        document.getElementById("txtara").appendChild(ptag);
+        if (msg.split(" ")[0] == "Thanks") {
+          document.getElementById("txtbox").style.display = "none";
+          document.getElementById("senddata").style.display = "none";
+          //chathistory button
+          let btnHistory = document.createElement("button");
+          btnHistory.innerHTML = "Download ChatHistory";
+          document.getElementById("chatHistory").appendChild(btnHistory);
+          btnHistory.addEventListener("click", function () {
+            location.href="/chathistory";
+          });
+        }
+      });
+      senddata = () => {
+        data = document.getElementById("txtbox").value;
+        socket.emit("obj", data);
+        document.getElementById("txtbox").value = "";
+        let ptag = document.createElement("div");
+        ptag.style.textAlign = "right";
+        ptag.style.backgroundColor = "DarkKhaki";
+        ptag.style.width = "700px";
+        ptag.style.height = "80px";
+        ptag.style.borderRadius = "1em";
+        let ptagValue = document.createTextNode("From Client: " + data);
+        ptag.appendChild(ptagValue);
+        document.getElementById("txtara").appendChild(ptag);
+      };
+      socket.on("obj1", (msg) => {
+        console.log(msg);
+        let ptag = document.createElement("div");
+        ptag.style.textAlign = "left";
+        ptag.style.backgroundColor = "LightCoral";
+        ptag.style.borderRadius = "1em";
+        ptag.style.width = "700px";
+        ptag.style.height = "80px";
+        let ptagValue = document.createTextNode(msg);
+        ptag.appendChild(ptagValue);
+        document.getElementById("txtara").appendChild(ptag);
+        if (
+          msg ==
+          "Bot: Hi " + data + " Are you intrested in booking an appoinment?"
+        ) {
+          let btn = document.createElement("button");
+          btn.innerHTML = "Yes";
+          document.getElementById("txtara").appendChild(btn);
+          btn.addEventListener("click", function () {
+            socket.emit("appointment", "yes");
+            btn.style.visibility = "hidden";
+            btnNo.style.visibility = "hidden";
+            let ptag = document.createElement("div");
+            ptag.style.textAlign = "right";
+            ptag.style.backgroundColor = "DarkKhaki";
+            ptag.style.width = "700px";
+            ptag.style.height = "80px";
+            ptag.style.borderRadius = "1em";
+            let ptagValue = document.createTextNode("From Client: Yes ");
+            ptag.appendChild(ptagValue);
+            document.getElementById("txtara").appendChild(ptag);
+          });
+          let btnNo = document.createElement("button");
+          btnNo.innerHTML = "No";
+          document.getElementById("txtara").appendChild(btnNo);
+          btnNo.addEventListener("click", function () {
+            socket.emit("appointment", "no");
+            btn.style.visibility = "hidden";
+            btnNo.style.visibility = "hidden";
+            let ptag = document.createElement("div");
+            ptag.style.textAlign = "right";
+            ptag.style.backgroundColor = "DarkKhaki";
+            ptag.style.width = "700px";
+            ptag.style.height = "80px";
+            ptag.style.borderRadius = "1em";
+            let ptagValue = document.createTextNode("From Client: No");
+            ptag.appendChild(ptagValue);
+            document.getElementById("txtara").appendChild(ptag);
+          });
+        }
+      });
+
+      socket.on("appNo", (msg) => {
+        console.log(msg);
+        let ptag = document.createElement("div");
+        ptag.style.textAlign = "left";
+        ptag.style.backgroundColor = "LightCoral";
+        ptag.style.borderRadius = "1em";
+        ptag.style.width = "700px";
+        ptag.style.height = "80px";
+        let ptagValue = document.createTextNode(msg);
+        ptag.appendChild(ptagValue);
+        document.getElementById("txtara").appendChild(ptag);
+        if (msg.split(" ")[2] == "Thanks") {
+          document.getElementById("txtbox").style.display = "none";
+          document.getElementById("senddata").style.display = "none";
+          //chathistory button
+        }
+      });
+
+      socket.on("appYes", (msg) => {
+        console.log(msg);
+
+        let ptag = document.createElement("div");
+        ptag.style.textAlign = "left";
+        ptag.style.backgroundColor = "LightCoral";
+        ptag.style.borderRadius = "1em";
+        ptag.style.width = "700px";
+        ptag.style.height = "80px";
+        let ptagValue = document.createTextNode(msg);
+        ptag.appendChild(ptagValue);
+        document.getElementById("txtara").appendChild(ptag);
+
+        let btn1 = document.createElement("button");
+        btn1.innerHTML = "Women's haircut: $50 -$80 (depending on length)";
+        document.getElementById("txtara").appendChild(btn1);
+        btn1.addEventListener("click", function () {
+          socket.emit("service", btn1.innerHTML);
+          //client side display
+          btn1.style.visibility = "hidden";
+          btn2.style.visibility = "hidden";
+          let ptag = document.createElement("div");
+          ptag.style.textAlign = "right";
+          ptag.style.backgroundColor = "DarkKhaki";
+          ptag.style.width = "700px";
+          ptag.style.height = "80px";
+          ptag.style.borderRadius = "1em";
+          let ptagValue = document.createTextNode(
+            "From Client: Women's haircut: $50 -$80 (depending on length)"
+          );
+          ptag.appendChild(ptagValue);
+          document.getElementById("txtara").appendChild(ptag);
+        });
+        let btn2 = document.createElement("button");
+        btn2.innerHTML = "Full color:$80-$120(depending on length)";
+        document.getElementById("txtara").appendChild(btn2);
+        btn2.addEventListener("click", function () {
+          socket.emit("service", btn2.innerHTML);
+          //client side display
+          btn1.style.visibility = "hidden";
+          btn2.style.visibility = "hidden";
+          let ptag = document.createElement("div");
+          ptag.style.textAlign = "right";
+          ptag.style.backgroundColor = "DarkKhaki";
+          ptag.style.width = "700px";
+          ptag.style.height = "80px";
+          ptag.style.borderRadius = "1em";
+          let ptagValue = document.createTextNode(
+            "From Client: Full color:$80-$120(depending on length)"
+          );
+          ptag.appendChild(ptagValue);
+          document.getElementById("txtara").appendChild(ptag);
+        });
+      });
+
+      socket.on("day", (msg) => {
+        console.log(msg);
+        let ptag = document.createElement("div");
+        ptag.style.textAlign = "left";
+        ptag.style.backgroundColor = "LightCoral";
+        ptag.style.borderRadius = "1em";
+        ptag.style.width = "300px";
+        ptag.style.height = "80px";
+        let ptagValue = document.createTextNode(msg);
+        ptag.appendChild(ptagValue);
+        document.getElementById("txtara").appendChild(ptag);
+      });
+      socket.on("time", (msg) => {
+        console.log(msg);
+
+        let ptag = document.createElement("div");
+        ptag.style.textAlign = "left";
+        ptag.style.backgroundColor = "LightCoral";
+        ptag.style.borderRadius = "1em";
+        ptag.style.width = "700px";
+        ptag.style.height = "80px";
+        let ptagValue = document.createTextNode(msg);
+        ptag.appendChild(ptagValue);
+        document.getElementById("txtara").appendChild(ptag);
+
+        let btn1 = document.createElement("button");
+        btn1.innerHTML = "10:00 AM";
+        document.getElementById("txtara").appendChild(btn1);
+        btn1.addEventListener("click", function () {
+          socket.emit("timeselected", btn1.innerHTML);
+          //client side display
+          btn1.style.visibility = "hidden";
+          btn2.style.visibility = "hidden";
+          let ptag = document.createElement("div");
+          ptag.style.textAlign = "right";
+          ptag.style.backgroundColor = "DarkKhaki";
+          ptag.style.width = "700px";
+          ptag.style.height = "80px";
+          ptag.style.borderRadius = "1em";
+          let ptagValue = document.createTextNode("From Client: 10:00 AM");
+          ptag.appendChild(ptagValue);
+          document.getElementById("txtara").appendChild(ptag);
+        });
+        let btn2 = document.createElement("button");
+        btn2.innerHTML = "11:00 AM";
+        document.getElementById("txtara").appendChild(btn2);
+        btn2.addEventListener("click", function () {
+          socket.emit("timeselected", btn2.innerHTML);
+          //client side display
+          btn1.style.visibility = "hidden";
+          btn2.style.visibility = "hidden";
+          let ptag = document.createElement("div");
+          ptag.style.textAlign = "right";
+          ptag.style.backgroundColor = "DarkKhaki";
+          ptag.style.width = "700px";
+          ptag.style.height = "80px";
+          ptag.style.borderRadius = "1em";
+          let ptagValue = document.createTextNode("From Client: 11:00 AM");
+          ptag.appendChild(ptagValue);
+          document.getElementById("txtara").appendChild(ptag);
+        });
+      });
+    </script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h2>welcome to Socket IO chatbot</h2>
+    <div
+      class="container bg-success p-2 text-white bg-opacity-25"
+      width="250px"
+      align="center"
+    >
+      <div id="txtara"></div>
+      <input type="text" id="txtbox" />
+      <input
+        type="button"
+        id="senddata"
+        value="Send Data"
+        onclick="senddata()"
+      />
+      <div id="chatHistory"></div>
+    </div>
+  </body>
+</html>
