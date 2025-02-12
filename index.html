@@ -12,6 +12,7 @@
       socket.on("obj0", (msg) => {
         let ptag = document.createElement("div");
         ptag.style.textAlign = "left";
+         ptag.style.padding="10px";
         ptag.style.backgroundColor = "LightCoral";
         ptag.style.borderRadius = "1em";
         ptag.style.width = "700px";
@@ -36,6 +37,7 @@
         socket.emit("obj", data);
         document.getElementById("txtbox").value = "";
         let ptag = document.createElement("div");
+        ptag.style.padding="10px";
         ptag.style.textAlign = "right";
         ptag.style.backgroundColor = "DarkKhaki";
         ptag.style.width = "700px";
@@ -49,6 +51,7 @@
         console.log(msg);
         let ptag = document.createElement("div");
         ptag.style.textAlign = "left";
+        ptag.style.padding="10px";
         ptag.style.backgroundColor = "LightCoral";
         ptag.style.borderRadius = "1em";
         ptag.style.width = "700px";
@@ -71,6 +74,7 @@
             btnNo.style.visibility = "hidden";
             let ptag = document.createElement("div");
             ptag.style.textAlign = "right";
+            ptag.style.padding="10px";
             ptag.style.backgroundColor = "DarkKhaki";
             ptag.style.width = "700px";
             ptag.style.height = "80px";
@@ -90,6 +94,7 @@
             ptag.style.textAlign = "right";
             ptag.style.backgroundColor = "DarkKhaki";
             ptag.style.width = "700px";
+            ptag.style.padding="10px";
             ptag.style.height = "80px";
             ptag.style.borderRadius = "1em";
             let ptagValue = document.createTextNode("From Client: No");
@@ -106,6 +111,7 @@
         ptag.style.backgroundColor = "LightCoral";
         ptag.style.borderRadius = "1em";
         ptag.style.width = "700px";
+        ptag.style.padding="10px";
         ptag.style.height = "80px";
         let ptagValue = document.createTextNode(msg);
         ptag.appendChild(ptagValue);
@@ -131,6 +137,7 @@
         ptag.style.textAlign = "left";
         ptag.style.backgroundColor = "LightCoral";
         ptag.style.borderRadius = "1em";
+        ptag.style.padding="10px";
         ptag.style.width = "700px";
         ptag.style.height = "80px";
         let ptagValue = document.createTextNode(msg);
@@ -150,6 +157,7 @@
           ptag.style.backgroundColor = "DarkKhaki";
           ptag.style.width = "700px";
           ptag.style.height = "80px";
+          ptag.style.padding="10px";
           ptag.style.borderRadius = "1em";
           let ptagValue = document.createTextNode(
             "From Client: Women's haircut: $50 -$80 (depending on length)"
@@ -170,6 +178,7 @@
           ptag.style.backgroundColor = "DarkKhaki";
           ptag.style.width = "700px";
           ptag.style.height = "80px";
+          ptag.style.padding="10px";
           ptag.style.borderRadius = "1em";
           let ptagValue = document.createTextNode(
             "From Client: Full color:$80-$120(depending on length)"
@@ -189,6 +198,7 @@
         ptag.style.borderRadius = "1em";
         ptag.style.width = "300px";
         ptag.style.height = "80px";
+        ptag.style.padding="10px";
         let ptagValue = document.createTextNode(msg);
         ptag.appendChild(ptagValue);
         document.getElementById("txtara").appendChild(ptag);
@@ -203,6 +213,7 @@
         ptag.style.borderRadius = "1em";
         ptag.style.width = "700px";
         ptag.style.height = "80px";
+        ptag.style.padding="10px";
         let ptagValue = document.createTextNode(msg);
         ptag.appendChild(ptagValue);
         document.getElementById("txtara").appendChild(ptag);
@@ -220,6 +231,7 @@
           ptag.style.backgroundColor = "DarkKhaki";
           ptag.style.width = "700px";
           ptag.style.height = "80px";
+          ptag.style.padding="10px";
           ptag.style.borderRadius = "1em";
           let ptagValue = document.createTextNode("From Client: 10:00 AM");
           ptag.appendChild(ptagValue);
@@ -238,6 +250,7 @@
           ptag.style.backgroundColor = "DarkKhaki";
           ptag.style.width = "700px";
           ptag.style.height = "80px";
+          ptag.style.padding="10px";
           ptag.style.borderRadius = "1em";
           let ptagValue = document.createTextNode("From Client: 11:00 AM");
           ptag.appendChild(ptagValue);
@@ -260,7 +273,7 @@
     ></script>
   </head>
   <body>
-    <h2>welcome to Socket IO chatbot</h2>
+    <h2>welcome to GreatClips, Please Chat with the bot to Book Appointment</h2>
     <div
       class="container bg-success p-2 text-white bg-opacity-25"
       width="250px"
